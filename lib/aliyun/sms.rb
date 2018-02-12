@@ -55,7 +55,7 @@ module Aliyun
 
       def send(mobile_num, template_code, message_param)
         sms_params = create_params(mobile_num, template_code, message_param)
-        Typhoeus.post(@domain,
+        Typhoeus.post(self.configuration.domain,
                  headers: {'Content-Type'=> "application/x-www-form-urlencoded"},
                  body: post_body_data(configuration.access_key_secret, sms_params))
       end

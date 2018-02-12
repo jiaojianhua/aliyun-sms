@@ -128,4 +128,7 @@ describe Aliyun::Sms do
     expect(Aliyun::Sms.post_body_data(key, params_input)).to eql(spect_output)
   end
 
+  it 'should get domain' do
+    expect(Aliyun::Sms.configuration.domain).to eql('https://dysmsapi.aliyuncs.com/')
+  end
 end
