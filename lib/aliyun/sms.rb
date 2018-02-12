@@ -9,17 +9,18 @@ module Aliyun
   module Sms
     class Configuration
       attr_accessor :access_key_secret, :access_key_id, :action, :format, :region_id,
-                    :sign_name, :signature_method, :signature_version, :sms_version
+                    :sign_name, :signature_method, :signature_version, :sms_version, :domain
       def initialize
         @access_key_secret = ''
         @access_key_id = ''
-        @action = ''
-        @format = ''
-        @region_id = ''
+        @action = 'SendSms'
+        @format = 'JSON'
+        @region_id = 'cn-hangzhou'
         @sign_name = ''
-        @signature_method = ''
-        @signature_version = ''
-        @sms_version = ''
+        @signature_method = 'HMAC-SHA1'
+        @signature_version = '1.0'
+        @sms_version = '2017-05-25'
+        @domain = 'https://dysmsapi.aliyuncs.com/'
       end
     end
 
@@ -54,7 +55,7 @@ module Aliyun
 
       def send(mobile_num, template_code, message_param)
         sms_params = create_params(mobile_num, template_code, message_param)
-        Typhoeus.post("https://dysmsapi.aliyuncs.com/",
+        Typhoeus.post(@domain,
                  headers: {'Content-Type'=> "application/x-www-form-urlencoded"},
                  body: post_body_data(configuration.access_key_secret, sms_params))
       end
