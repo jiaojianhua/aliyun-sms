@@ -52,7 +52,7 @@ require 'aliyun/sms'
 很可能是镜像安装源与 Ruby Gems 不同步造成的，可以改为 Github 安装源，例如 Rails Gemfile 文件引用可以改为下面格式，即可正确安装。
 
 ```ruby
-gem 'aliyun-sms', git: 'https://github.com/VICTOR-LUO-F/aliyun-sms.git'
+gem 'aliyun-sms', git: 'git@github.com:jiaojianhua/aliyun-sms.git'
 ```
 
 ## Usage 使用
@@ -127,7 +127,7 @@ Aliyun::Sms.send(phone_number, template_code, param_string)
 
 1. phone_number: 接收短信的手机号，必须为字符型，例如 '1234567890'；
 2. template\_code: 短信模版代码，必须为字符型，申请开通短信服务后，由阿里云提供，例如 'SMS_12345678'；
-3. para_string: 请求字符串，向短信模版提供参数，必须为字符型的json格式，例如 '{"customer": "username"}'。
+3. para_string: 请求字符串，向短信模版提供参数，必须为字符型的json格式，例如 '{"customer": "username"}', 对应template ${customer}。
 
 特别说明：
 
